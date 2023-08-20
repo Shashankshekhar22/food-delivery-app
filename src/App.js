@@ -20,25 +20,34 @@ import ReactDOM from "react-dom/client";
  *  -- Any add ons
  */
 
-const jsxHeading = <h1 id="heading">This is my React Element 🚀 </h1>;
-
-const Title = () => {
-  return <h1 className="titleComponent">This is the Title Component</h1>;
-};
-// React Component
-// Component composition: Clubbing of 2 or more componnet together
-const HeadingComponent = () => {
+const Header = () => {
   return (
-    <div className="container">
-      {jsxHeading}
-      <h3>Called as a function: </h3> {Title()}
-      <Title />
-      <h1 className="heading">This is a react Functional Component</h1>
+    <div className="header">
+      <div>
+        <img
+          className="logo"
+          src={require("./assests/food-app-logo.jpg")}
+        ></img>
+      </div>
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+const AppLayout = () => {
+  return (
+    <div className="app">
+      <Header />
     </div>
   );
 };
 // create root using createRoot
 const root = ReactDOM.createRoot(document.getElementById("root"));
-// passing react element inside root
-// root.render(jsxHeading);
-root.render(<HeadingComponent />);
+root.render(<AppLayout />);
