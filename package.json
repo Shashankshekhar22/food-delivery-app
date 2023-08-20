@@ -1,0 +1,32 @@
+{
+  "name": "food-delivery-app",
+  "version": "1.0.0",
+  "description": "Sample Food Delivery app",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shashankshekhar22/food-delivery-app.git"
+  },
+  "keywords": [
+    "passcode"
+  ],
+  "author": "Shashank Shekhar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shashankshekhar22/food-delivery-app/issues"
+  },
+  "homepage": "https://github.com/Shashankshekhar22/food-delivery-app#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browsersList": [
+    "last 3 version"
+  ]
+}
