@@ -1,17 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Header from "./components/Header";
+import Body from "./components/Body";
 
 // JSX => Babel transpiles it to React.createElement => ReactElement-JS Object => HTMLElement(Render)
 // React Element
 
 /*
  * Food App Design
+ * Header
  *  - Logo
  *  - Nav Items
  * Body
  *  - Searchh
  *  - ResturantConyainer
  *    -- ResturantCard
+ *      -- img
+ *      -- Name of Res, Star Rating, cuising, Delivery ETA
  * Footer
  *  -- Copyright
  *  -- Links
@@ -20,31 +25,11 @@ import ReactDOM from "react-dom/client";
  *  -- Any add ons
  */
 
-const Header = () => {
-  return (
-    <div className="header">
-      <div>
-        <img
-          className="logo"
-          src={require("./assests/food-app-logo.jpg")}
-        ></img>
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
 const AppLayout = () => {
   return (
     <div className="app">
       <Header />
+      <Body />
     </div>
   );
 };
