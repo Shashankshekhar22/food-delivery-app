@@ -16,3 +16,7 @@
 
 - Diff Algorithm
 - It finds the difference between virtual DOM and updated DOM
+
+# useEffect
+
+- it is called as soon as rendering is done
