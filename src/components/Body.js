@@ -11,14 +11,16 @@ const Body = () => {
     // ...resData.data.cards[2].card.card.gridElements.infoWithStyle.restaurants,
   ]);
 
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
   useEffect(() => {
     fetchData();
-    console.log("use effect called");
   }, []);
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.60858570026177&lng=85.11201202869415&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.944372629805278&lng=77.67966147512197&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const jsonData = await data.json();
     console.log("jsonData", jsonData);
@@ -26,7 +28,13 @@ const Body = () => {
       jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
+
+    setFilteredRestaurant(
+      jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   };
+
   // Normal JS variable
   //   let resListData =
   //     resData.data.cards[2].card.card.gridElements.infoWithStyle.restaurants;
@@ -35,6 +43,44 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-btn"
+            placeholder="Search"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+            onKeyUp={(e) => {
+              const filteredList = resListData.filter((restaurantData) => {
+                return restaurantData.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase());
+              });
+              setFilteredRestaurant(filteredList);
+              if (e.target.value === "") {
+                console.log(resListData);
+                setFilteredRestaurant(resListData);
+              }
+            }}
+          ></input>
+          {/* <button
+            onClick={() => {
+              console.log(searchText);
+              const filteredList = resListData.filter((restaurantData) => {
+                return restaurantData.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase());
+              });
+              setFilteredRestaurant(filteredList);
+
+              console.log(filteredList);
+            }}
+          >
+            Search
+          </button> */}
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
@@ -50,7 +96,7 @@ const Body = () => {
         </button>
       </div>
       <div className="restaurant-container">
-        {resListData.map((restaurantData) => (
+        {filteredRestaurant.map((restaurantData) => (
           <RestaurantCard
             key={restaurantData.info.id}
             resData={restaurantData.info}
