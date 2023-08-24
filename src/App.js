@@ -2,8 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-
-// JSX => Babel transpiles it to React.createElement => ReactElement-JS Object => HTMLElement(Render)
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Error from "./components/Error";
+// JSX => Babel transpile it to React.createElement => ReactElement-JS Object => HTMLElement(Render)
 // React Element
 
 /*
@@ -16,7 +19,7 @@ import Body from "./components/Body";
  *  - ResturantConyainer
  *    -- ResturantCard
  *      -- img
- *      -- Name of Res, Star Rating, cuising, Delivery ETA
+ *      -- Name of Res, Star Rating, cuisine, Delivery ETA
  * Footer
  *  -- Copyright
  *  -- Links
@@ -29,10 +32,29 @@ const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <Body />
+      {/* if path is / load Body */}
+      <Outlet />
+      {/* if path is /about load About */}
+      {/* if path is /contact load Contact */}
     </div>
   );
 };
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      { path: "about", element: <About /> },
+      { path: "contact", element: <Contact /> },
+    ],
+    errorElement: <Error />,
+  },
+]);
 // create root using createRoot
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter} />);
