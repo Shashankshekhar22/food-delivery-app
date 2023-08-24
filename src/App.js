@@ -6,6 +6,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
+import RestaurantMenu from "./components/RestaurantMenu";
 // JSX => Babel transpile it to React.createElement => ReactElement-JS Object => HTMLElement(Render)
 // React Element
 
@@ -51,6 +52,7 @@ const appRouter = createBrowserRouter([
       },
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
+      { path: "/restaurants/:resId", element: <RestaurantMenu /> },
     ],
     errorElement: <Error />,
   },

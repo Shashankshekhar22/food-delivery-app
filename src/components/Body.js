@@ -38,7 +38,7 @@ const Body = () => {
   // Normal JS variable
   //   let resListData =
   //     resData.data.cards[2].card.card.gridElements.infoWithStyle.restaurants;
-  return resListData.length === 0 ? (
+  return resListData?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -98,8 +98,8 @@ const Body = () => {
       <div className="restaurant-container">
         {filteredRestaurant.map((restaurantData) => (
           <RestaurantCard
-            key={restaurantData.info.id}
             resData={restaurantData.info}
+            key={restaurantData.info.id}
           />
         ))}
         ;
