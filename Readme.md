@@ -47,3 +47,12 @@
 
     - Client side Routing => Routing is defined in the client side no API calls are made
     - Server side Routing => Get routing data from server and loads it
+
+# Lazy Loading - Different Name
+
+- Chunking
+- Code Splitting
+- Dynamic Loading
+- Lazy Loading
+- on Demand Loading
+- dynamic Import
