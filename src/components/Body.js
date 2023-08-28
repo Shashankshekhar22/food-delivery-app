@@ -2,6 +2,7 @@ import RestaurantCard from "../components/ResturantCard";
 import { swiggyMockData } from "../utils/swiggyMockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const resData = swiggyMockData;
 
@@ -34,6 +35,11 @@ const Body = () => {
         ?.restaurants
     );
   };
+
+  const onLineStatus = useOnlineStatus();
+  if (!onLineStatus) {
+    return <h1>Seems you are offline. Please Check your Internet Status</h1>;
+  }
 
   // Normal JS variable
   //   let resListData =
