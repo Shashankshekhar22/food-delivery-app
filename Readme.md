@@ -26,16 +26,16 @@
 
 - it is called as soon as rendering is done
 
-- if no dependency array => useEffect is called on Every Render
+- if no dependency array => useEffect is called on Every Render, No second Parameter
 - useEffect(() => {
 - console.log("useEffect Called");
 - });
-- if there is an empty dependency array ==> use effect is called once on initial render
+- if there is an empty dependency array ==> use effect is called once on initial render, empty second Parameter
 - useEffect(() => {
 - console.log("useEffect Called");
 - }, []);
 
-- if dependency array has some value then => useEffect is called only when dependency changes
+- if dependency array has some value then => useEffect is called only when dependency changes, Parameter dependencies
 
 - useEffect(() => {
 - console.log("useEffect Called");

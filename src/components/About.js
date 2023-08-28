@@ -4,40 +4,64 @@ import UserClass from "./UserClass";
 class About extends React.Component {
   constructor(props) {
     super(props);
-    console.log("Parent Constructor");
+    this.state = {
+      userInfo: {
+        name: "Something",
+        location: "Default",
+        avatar_url: "",
+        info: "",
+      },
+    };
   }
 
-  componentDidMount() {
-    console.log("Parent Component Did Mount");
+  async componentDidMount() {
+    const data = await fetch("https://api.github.com/users/Shashankshekhar22");
+    const json = await data.json();
+    this.setState({
+      userInfo: json,
+    });
   }
 
   render() {
-    console.log("Parent Render");
-
     return (
       <div>
         <h1>About Us</h1>
-        <UserClass name={"First (Child Component)"} />
-        <UserClass name={"Second (Child Component)"} />
+        <UserClass
+          name={this.state.userInfo.name}
+          bio={this.state.userInfo.bio}
+          avatar={this.state.userInfo.avatar_url}
+          location={this.state.userInfo.location}
+        />
       </div>
     );
+  }
+
+  componentDidUpdate() {
+    console.log("Component did update");
+  }
+
+  componentWillUnmount() {
+    console.log("It will unmount once we go away from that view");
   }
 }
 
 export default About;
 
 /**
- *   Parent Constructor
-     
-     Parent Render
-     
-     First (Child Component) Child Constructor
-     First (Child Component) Child Render
-     Second (Child Component) Child Constructor
-     Second (Child Component) Child Render
-    
-     First (Child Component) Child Component Did Mount
-     Second (Child Component) Child Component Did Mount
-    
-     Parent Component Did Mount
+ * ----Mounting---------
+ *
+ *  Constructor (dummy)
+ *  Render (dummy)
+ *  <HTML Dummy Data>
+ * Component did mount
+ * <API_CALL>
+ * this.state update
+ *
+ *
+ * ----Update
+ *
+ * Render (API Data)
+ * <HTML (new API data)>
+ * ComponentDidUpdate is called
+ *
  */
