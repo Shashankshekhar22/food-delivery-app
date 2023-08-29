@@ -14,15 +14,15 @@ const Header = () => {
     console.log("useEffect Called");
   }, [btnName]);
   return (
-    <div className="header">
+    <div className="flex justify-between bg-slate-300 shadow-lg">
       <div>
         <img
-          className="logo"
+          className="w-40"
           src={require("../assests/food-app-logo.jpg")}
         ></img>
       </div>
-      <div className="nav-items">
-        <ul>
+      <div className="flex items-center">
+        <ul className="flex space-x-4 font-bold  px-6 mx-4">
           <li>Online Status: {onLineStatus ? "✅" : "🔴"}</li>
           <li>
             <Link to="/">Home</Link>

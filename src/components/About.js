@@ -25,7 +25,7 @@ class About extends React.Component {
   render() {
     return (
       <div>
-        <h1>About Us</h1>
+        <h1 className="text-3xl">About Us</h1>
         <UserClass
           name={this.state.userInfo.name}
           bio={this.state.userInfo.bio}
