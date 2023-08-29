@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const RestaurantCard = (props) => {
   const { resData } = props;
   return (
-    <div className="m-4 p-4 w-[250px] bg-slate-300 rounded-lg">
+    <div className="m-4 p-4 w-[250px] bg-slate-300 rounded-lg hover:bg-slate-400">
       <Link to={"/restaurants/" + resData.id} className="restaurant-route">
         <img
           className="rounded-lg"
