@@ -1,4 +1,4 @@
-import RestaurantCard from "../components/ResturantCard";
+import RestaurantCard, { withPromotedLabel } from "../components/ResturantCard";
 import { swiggyMockData } from "../utils/swiggyMockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
@@ -36,11 +36,13 @@ const Body = () => {
     );
   };
 
+  console.log(filteredRestaurant);
   const onLineStatus = useOnlineStatus();
   if (!onLineStatus) {
     return <h1>Seems you are offline. Please Check your Internet Status</h1>;
   }
 
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
   // Normal JS variable
   //   let resListData =
   //     resData.data.cards[2].card.card.gridElements.infoWithStyle.restaurants;
@@ -87,12 +89,19 @@ const Body = () => {
         </button>
       </div>
       <div className="restaurant-container flex flex-wrap">
-        {filteredRestaurant.map((restaurantData) => (
-          <RestaurantCard
-            resData={restaurantData.info}
-            key={restaurantData.info.id}
-          />
-        ))}
+        {filteredRestaurant.map((restaurantData) =>
+          restaurantData.info.veg ? (
+            <RestaurantCardPromoted
+              resData={restaurantData.info}
+              key={restaurantData.info.id}
+            />
+          ) : (
+            <RestaurantCard
+              resData={restaurantData.info}
+              key={restaurantData.info.id}
+            />
+          )
+        )}
         ;
       </div>
     </div>

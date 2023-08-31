@@ -56,3 +56,7 @@
 - Lazy Loading
 - on Demand Loading
 - dynamic Import
+
+# Higher order component
+
+    - Takes one component as Input modifies it and return modified component
