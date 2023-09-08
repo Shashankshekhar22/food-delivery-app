@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
+  const { loggedInUser } = useContext(UserContext);
   return (
     <div className="m-4 p-4 w-[250px] bg-slate-300 rounded-lg hover:bg-slate-400">
       <Link to={"/restaurants/" + resData.id} className="restaurant-route">
@@ -17,6 +20,7 @@ const RestaurantCard = (props) => {
         <h4 className="font-bold text-sm">{resData.avgRating}</h4>
         <h4 className="font-bold text-sm">{resData.sla.slaString}</h4>
         <h4 className="font-bold text-sm">{resData.costForTwo}</h4>
+        <h4 className="font-bold text-sm">User : {loggedInUser}</h4>
       </Link>
     </div>
   );

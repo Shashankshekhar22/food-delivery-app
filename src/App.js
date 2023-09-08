@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 // JSX => Babel transpile it to React.createElement => ReactElement-JS Object => HTMLElement(Render)
 // React Element
 
@@ -34,14 +35,25 @@ const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    // Make an API call and  send User id and Password and it will authenticate and return data
+    data = {
+      name: "Shashank Shekhar",
+    };
+    setUsername(data.name);
+  }, []);
   return (
-    <div className="app">
-      <Header />
-      {/* if path is / load Body */}
-      <Outlet />
-      {/* if path is /about load About */}
-      {/* if path is /contact load Contact */}
-    </div>
+    <UserContext.Provider value={{ loggedInUser: username, setUsername }}>
+      <div className="app">
+        <Header />
+        {/* if path is / load Body */}
+        <Outlet />
+        {/* if path is /about load About */}
+        {/* if path is /contact load Contact */}
+      </div>
+    </UserContext.Provider>
   );
 };
 

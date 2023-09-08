@@ -1,8 +1,9 @@
 import RestaurantCard, { withPromotedLabel } from "../components/ResturantCard";
 import { swiggyMockData } from "../utils/swiggyMockData";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const resData = swiggyMockData;
 
@@ -18,6 +19,8 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const { loggedInUser, setUsername } = useContext(UserContext);
 
   const fetchData = async () => {
     const data = await fetch(
@@ -88,6 +91,17 @@ const Body = () => {
           Top Rated Restaurant
         </button>
       </div>
+      <div className="flex m-4 p-4">
+        <label>User Name: </label>
+        <input
+          type="text"
+          className="w-60 p-2 border-solid border-black hover:border-gray-400"
+          placeholder="User Name"
+          value={loggedInUser}
+          onChange={(e) => setUsername(e.target.value)}
+        ></input>
+      </div>
+
       <div className="restaurant-container flex flex-wrap">
         {filteredRestaurant.map((restaurantData) =>
           restaurantData.info.veg ? (

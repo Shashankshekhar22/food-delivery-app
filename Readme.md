@@ -60,3 +60,10 @@
 # Higher order component
 
     - Takes one component as Input modifies it and return modified component
+
+# Context
+
+- To use it we need to have <ContextName.Provider></ContextName.Provider>
+- it is a global context. If we are wrapping other component with this it will be available across the app
+- if we want it to be in specific component then we need to wrap it with that
+- see UserContext example here
