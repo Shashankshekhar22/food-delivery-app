@@ -63,7 +63,11 @@
 
 # Context
 
+- createContext is used to create a context
 - To use it we need to have <ContextName.Provider></ContextName.Provider>
+- To use it in class based component we need to have <ContextName.Consumer></ContextName.Consumer>
+- useContext is used to consume it in function based component
 - it is a global context. If we are wrapping other component with this it will be available across the app
 - if we want it to be in specific component then we need to wrap it with that
 - see UserContext example here
+-
