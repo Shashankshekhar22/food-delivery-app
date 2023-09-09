@@ -1,3 +1,12 @@
+# Create react app without using create-react-app command
+
+- Execute command npm init
+- When prompted enter the required details
+- Install parcel
+- web-pack optional
+- Install react dependencies
+- Execute the command to run react
+
 # Named export
 
 - export const abc this requires curly braces while importing
