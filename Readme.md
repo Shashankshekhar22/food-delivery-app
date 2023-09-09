@@ -79,4 +79,16 @@
 - it is a global context. If we are wrapping other component with this it will be available across the app
 - if we want it to be in specific component then we need to wrap it with that
 - see UserContext example here
--
+
+# RTK (Redux Tool Kit)
+
+- It is a way to manage the data in more efficient way
+- There is central Store created with holds the state
+- Slice - Every data can be a SLice like cart data is a slice, user data is a slice,
+- We can not modify the data directly
+- When we perform a click event to update the data it does following
+- To Write the data
+- It dispatches an action which calls an reducer function which updates the slice of store
+- To Read the data
+- Selector is used tp get data from store
+- Need to subscribe to the store to read the data
