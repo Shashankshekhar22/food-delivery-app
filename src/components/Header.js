@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   // const btnName = "Login";
@@ -11,9 +12,9 @@ const Header = () => {
   // if no dependency array => useEffect is called on Every Render
   // if there is an empty dependency array ==> useEffect is called once on initial render
   // if dependency array has some value then => useEffect is called only when dependency changes
-  useEffect(() => {
-    console.log("useEffect Called");
-  }, [btnName]);
+  useEffect(() => {}, [btnName]);
+
+  const cartItems = useSelector((store) => store.cart.items);
   return (
     <div className="flex justify-between bg-slate-300 shadow-lg">
       <div>
@@ -38,8 +39,9 @@ const Header = () => {
           <li>
             <Link to="/grocery">Grocery</Link>
           </li>
-
-          <li>Cart</li>
+          <Link to="/cart">
+            <li className="px-4">Cart ({cartItems.length} Items)</li>
+          </Link>
           <button
             className="login-btn"
             onClick={() => {

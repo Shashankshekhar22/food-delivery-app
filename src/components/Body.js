@@ -39,7 +39,6 @@ const Body = () => {
     );
   };
 
-  console.log(filteredRestaurant);
   const onLineStatus = useOnlineStatus();
   if (!onLineStatus) {
     return <h1>Seems you are offline. Please Check your Internet Status</h1>;
@@ -71,7 +70,6 @@ const Body = () => {
               });
               setFilteredRestaurant(filteredList);
               if (e.target.value === "") {
-                console.log(resListData);
                 setFilteredRestaurant(resListData);
               }
             }}
@@ -84,8 +82,6 @@ const Body = () => {
               return restaurantData.info.avgRating > 4;
             });
             setResListData(filteredList);
-
-            console.log(filteredList);
           }}
         >
           Top Rated Restaurant

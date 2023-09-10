@@ -82,6 +82,8 @@
 
 # RTK (Redux Tool Kit)
 
+- npm install @reduxjs/toolkit
+- npm install react-redux
 - It is a way to manage the data in more efficient way
 - There is central Store created with holds the state
 - Slice - Every data can be a SLice like cart data is a slice, user data is a slice,

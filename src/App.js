@@ -8,6 +8,8 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 // JSX => Babel transpile it to React.createElement => ReactElement-JS Object => HTMLElement(Render)
 // React Element
 
@@ -32,6 +34,7 @@ import UserContext from "./utils/UserContext";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
+const Cart = lazy(() => import("./components/Cart"));
 
 const AppLayout = () => {
   const [username, setUsername] = useState("");
@@ -44,15 +47,17 @@ const AppLayout = () => {
     setUsername(data.name);
   }, []);
   return (
-    <UserContext.Provider value={{ loggedInUser: username, setUsername }}>
-      <div className="app">
-        <Header />
-        {/* if path is / load Body */}
-        <Outlet />
-        {/* if path is /about load About */}
-        {/* if path is /contact load Contact */}
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: username, setUsername }}>
+        <div className="app">
+          <Header />
+          {/* if path is / load Body */}
+          <Outlet />
+          {/* if path is /about load About */}
+          {/* if path is /contact load Contact */}
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -83,6 +88,14 @@ const appRouter = createBrowserRouter([
         ),
       },
       { path: "/restaurants/:resId", element: <RestaurantMenu /> },
+      {
+        path: "/cart",
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Cart />
+          </Suspense>
+        ),
+      },
     ],
     errorElement: <Error />,
   },
